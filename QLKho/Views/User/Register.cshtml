@@ -1,0 +1,88 @@
+﻿@model QLKho.ViewModels.UserViewModel
+@{
+    Layout = null;
+}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Quản lý kho hàng Logtra</title>
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets/img/logo/favicon.png">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="~/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/plugins/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="~/css/feathericon.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.js"></script>
+    <link rel="stylesheet" href="~/plugins/morris/morris.css">
+    <link rel="stylesheet" href="~/css/style.css">
+</head>
+
+<body>
+    <div class="main-wrapper login-body">
+        <div class="login-wrapper" style="background-image: url('img\backgroundlogin.png'); background-repeat: no-repeat;">
+            <div class="container">
+                <div class="loginbox">
+                    <div class="login-left"> <img src="~/assets/img/logo/logo-white.png" class="logo-outside" alt="thumb"> </div>
+                    <div class="login-right">
+                        <div class="login-right-wrap">
+                            <h1>REGISTER</h1>
+                            <p class="account-subtitle">Please enter your information</p>
+                            <form asp-action="Register" asp-controller="User" method="POST">
+                                <div class="form-group">
+                                    <input class="form-control" asp-for="Register.Username" type="text" placeholder="Username" required>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" asp-for="Register.Name" type="text" placeholder="Full Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" asp-for="Register.Email" type="email" placeholder="Email" required>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" asp-for="Register.Phone" type="tel" placeholder="Phone Number" required>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" asp-for="Register.Password" type="password" placeholder="Password" required
+                                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                           title="Password must be at least 8 characters long, and include at least one number, one lowercase and one uppercase letter.">
+                                </div>
+                                <div class="form-group">
+                                    <input name="confirm" class="form-control" type="password" id="confirmPassword" placeholder="Confirm Password" required
+                                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                           title="Password must be at least 8 characters long, and include at least one number, one lowercase and one uppercase letter."
+                                           onchange="checkPasswordMatch()">
+                                    <div id="passwordMatchMessage"></div>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-primary btn-block" type="submit">REGISTER</button>
+                                </div>
+                            </form>
+                            <div class="text-center dont-have">Already have an account? <a asp-action="Login" asp-controller="User" class="link-primary text-decoration-none">Login</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkPasswordMatch() {
+            var password = document.getElementById('password');
+            var confirm = document.getElementById('confirmPassword');
+            if (password.value === confirm.value) {
+                confirmPassword.setCustomValidity('');
+            } else {
+                confirmPassword.setCustomValidity('Passwords do not match');
+            }
+            }
+    </script>
+
+    <script src="~/js/jquery-3.5.1.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="~/js/script.js"></script>
+</body>
+
